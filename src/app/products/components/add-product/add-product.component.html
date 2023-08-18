@@ -1,35 +1,26 @@
-
-<div class="container  my-5"> 
-  <h3 class="mb-3">Edit Product</h3>
-  <form #form="ngForm" (ngSubmit)="addProduct()">
-      
- 
-      <div class="mb-3">
-          <label for="productinput" class="form-label">Name</label>
-          <input type="text" class="form-control" id="productinput" name="productName" [(ngModel)]='addProductrequest.title'
-          (ngModelChange)="onChange($event)" placeholder="productName" >
-      </div>
-      <div class="mb-3">
-          <label for="productinput" class="form-label">Description</label>
-          <textarea class="form-control rounded-0" id="description" rows="3" [(ngModel)]='addProductrequest.description'
-          (ngModelChange)="onChange($event)"></textarea>
-          <!-- <input type="text" class="form-control" id="productinput" name="description" [(ngModel)]='addProductrequest.description'
-          (ngModelChange)="onChange($event)"  placeholder="XXXXXXX" > -->
-      </div>
-      <div class="mb-3">
-          <label for="productinput" class="form-label">Product Image</label>
-          <input  type="text" class="form-control" id="productinput" name="productImg" [(ngModel)]='addProductrequest.image'
-          (ngModelChange)="onChange($event)"  placeholder="+00 0000000">
-      </div>
-      <div class="mb-3">
-          <label for="productinput" class="form-label">Price</label>
-          <input  type="number" step="0.01" class="form-control" id="productinput" name="price"
-          (ngModelChange)="onChange($event)"  [(ngModel)]='addProductrequest.price' placeholder="1000">
-      </div>
-     
-      
-      <button type="submit" class="btn btn-primary" [disabled]="!modelchanged">Save</button>
-      
-      
-  </form>
-</div>  
+<div class="container  my-5">
+    <h3 class="mb-3">Edit Product</h3>
+    <form #form="ngForm" (ngSubmit)="addProduct()">
+        <div class="mb-3">
+            <label for="productinput" class="form-label">Name</label>
+            <input type="text" class="form-control" id="productinput" name="productName"
+                [(ngModel)]='addProductrequest.title' (ngModelChange)="onChange($event)" placeholder="productName">
+        </div>
+        <div class="mb-3">
+            <label for="productinput" class="form-label">Description</label>
+            <textarea type="text" class="form-control rounded-0" id="productinput" name="description" rows="3" required
+                [(ngModel)]='addProductrequest.description' (ngModelChange)="onChange($event)"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="productinput" class="form-label">Product Image</label>
+            <input type="text" class="form-control" id="productinput" name="productImg"
+                [(ngModel)]='addProductrequest.image' (ngModelChange)="onChange($event)" placeholder="+00 0000000">
+        </div>
+        <div class="mb-3">
+            <label for="productinput" class="form-label">Price</label>
+            <input type="number" step="0.01" class="form-control" id="productinput" name="price"
+                (ngModelChange)="onChange($event)" [(ngModel)]='addProductrequest.price' placeholder="1000">
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!modelchanged">Save</button>
+    </form>
+</div>

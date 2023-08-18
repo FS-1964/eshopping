@@ -10,56 +10,47 @@ import ValidateForm from 'src/app/helpers/validateForm';
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.css']
 })
-export class AddProductComponent implements OnInit{
+export class AddProductComponent implements OnInit {
   addProductrequest: product = {
     title: '',
     description: '',
-  
+
     price: '',
     image: '',
-   
+
     productId: ''
   };
-  modelchanged:boolean=false;
-  selectedItem:any;
-  myform:FormGroup ;
-  constructor(private fb: FormBuilder,private productService: ProductService, private route: Router) {
-    this.myform=fb.group({productName:['',Validators.required],
-    description:['',Validators.required],
-    productImg:['',Validators.required],
-    price:['',Validators.required]
+  modelchanged: boolean = false;
+  selectedItem: any;
+  myform: FormGroup;
+  constructor(private fb: FormBuilder, private productService: ProductService, private route: Router) {
+    this.myform = fb.group({
+      productName: ['', Validators.required],
+      description: ['', Validators.required],
+      productImg: ['', Validators.required],
+      price: ['', Validators.required]
     })
-   }
-  ngOnInit(): void { 
-   
-   
-
-   
-    
   }
-  
+  ngOnInit(): void {
+
+  }
+
   addProduct() {
     console.log(this.addProductrequest)
-   
-      this.productService.addProduct(this.addProductrequest).subscribe({
-        next: (product) => {  this.route.navigate(['products']); },
-        error: err => {
-         
-          (response: any) => { console.log(response) }
-        }
-      })
-   
-  
-    this.modelchanged=false;
 
+    this.productService.addProduct(this.addProductrequest).subscribe({
+      next: (product) => { this.route.navigate(['products']); },
+      error: err => {
+
+        (response: any) => {}
+      }
+    })
+    this.modelchanged = false;
+  }
+  onChange(newValue: any) {
+
+    this.selectedItem = newValue;
+    this.modelchanged = true;
 
   }
-  onChange(newValue:any) {
-             
-    this.selectedItem = newValue;  // don't forget to update the model here
-    this.modelchanged=true;
-    console.log('new addvalue:'+this.selectedItem)
-    console.log('state:'+this.modelchanged)
-    // ... do other stuff here ...
-}      
 }

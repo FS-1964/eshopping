@@ -14,10 +14,10 @@
         </div>
         <div class="mb-3">
             <label for="productinput" class="form-label">Description</label>
-          <!--   <textarea class="form-control rounded-0" id="description" rows="3" [(ngModel)]='productDetails.description'
-          (ngModelChange)="onChange($event)"></textarea> -->
-             <input type="text" class="form-control" id="productinput" name="description"  required [(ngModel)]='productDetails.description'
-            (ngModelChange)="onChange($event)"  placeholder="XXXXXXX" > 
+         
+           <textarea type="text" class="form-control rounded-0" id="productinput" name="description" rows="3" required  [(ngModel)]='productDetails.description'
+          (ngModelChange)="onChange($event)"></textarea> 
+           
         </div>
         <div class="mb-3">
             <label for="productinput" class="form-label">Product Image</label>
@@ -29,8 +29,6 @@
             <input  type="number" step="0.01" class="form-control" id="productinput" name="price"
             (ngModelChange)="onChange($event)"  required  [(ngModel)]='productDetails.price' placeholder="1000">
         </div>
-       
-        
         <button type="submit" class="btn btn-primary" [disabled]="!modelchanged">Save</button>
         <button type="button" class="btn btn-danger ms-3" (click)="deleteProduct()" >Delete</button>
         

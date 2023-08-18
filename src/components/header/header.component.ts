@@ -9,12 +9,8 @@ import { AuthService } from 'src/app/authentication/auth.service';
 export class HeaderComponent implements OnInit {
   islogged: any;
   constructor(private authservice: AuthService) { }
-  ngOnInit(): void {
-
-
-  }
+  ngOnInit(): void {}
   logoutactiv() {
-    console.log(this.authservice.User); console.log(this.authservice.token)
     this.authservice.ProceedLogout();
   }
   isloggedin() {
@@ -22,7 +18,6 @@ export class HeaderComponent implements OnInit {
     if (this.authservice.token) {
       result = true;
     }
-    console.log(result)
     return result;
   }
 }

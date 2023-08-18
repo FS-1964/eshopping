@@ -6,13 +6,11 @@ button {
 
 }
 label{
-    margin-left: 10px; 
+    margin-left: 15px; 
+    font-weight: bold;
+    font-size: small;
 }
-#description{
-    background-color: rgb(194, 209, 221);  
-    margin-left: 10px;
-    width: 80%;
-}
+
 
 form {
     background-color: rgb(95, 147, 175);
@@ -23,7 +21,7 @@ form {
  
 }
 
-input {
+input,#productinput {
     background-color: rgb(194, 209, 221);
     margin-left: 10px;
     width: 80%;
