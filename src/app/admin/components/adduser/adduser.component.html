@@ -1,0 +1,54 @@
+<div class="container my-5">
+    <h3 class="mb-3">New User</h3>
+    <form #form="ngForm" (ngSubmit)="addUser()">
+
+        <div class="mb-3">
+            <label for="firstNameinput" class="form-label">FirstName</label>
+            <input type="text" class="form-control" id="firstNameinput" name="firstName"
+                [(ngModel)]='requesteduser.firstName' placeholder="firstName">
+        </div>
+        <div class="mb-3">
+            <label for="lastNameinput" class="form-label">LastName</label>
+            <input type="text" class="form-control" id="lastNameinput" name="lastName"
+                [(ngModel)]='requesteduser.lastName' placeholder="XXXXXXX">
+        </div>
+        <div class="mb-3">
+            <label for="userNameinput" class="form-label">UserName</label>
+            <input type="text" class="form-control" id="userNameinput" name="userName"
+                [(ngModel)]='requesteduser.userName' placeholder="userName">
+        </div>
+        <div class="mb-3">
+            <label for="emailinput" class="form-label">Email</label>
+            <input type="text" class="form-control" id="emailinput" name="email" [(ngModel)]='requesteduser.email'
+                placeholder="maxmuster@xxx.com">
+        </div>
+        <div class="mb-3">
+            <label for="addressinput" class="form-label">Addresss</label>
+            <input type="text" class="form-control" id="addressinput" name="address" [(ngModel)]='requesteduser.address'
+                placeholder="xxxxx">
+        </div>
+        <div class="mb-3">
+            <label for="roleinput" class="form-label">Role</label>
+
+            <!-- <input type="text" class="form-control" id="roleinput" name="role" [(ngModel)]='requesteduser.role'
+                placeholder="role"> -->
+
+            <select class="form-control" [(ngModel)]='requesteduser.role' name="role">
+                <option>User</option>
+                <option>Admin</option>
+                <option>Guest</option>
+                
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="passwordinput" class="form-label">Password</label>
+            <input type="text" class="form-control" id="passwordinput" name="password"
+                [(ngModel)]='requesteduser.password' placeholder="xxxxx">
+
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+
+
+    </form>
+</div>
+

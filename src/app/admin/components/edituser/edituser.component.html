@@ -1,0 +1,45 @@
+<div class="container my-5">
+    <h3 class="mb-3">Edit Employee</h3>
+    <form #form="ngForm" (ngSubmit)="updateUser()">
+        <div class="mb-3">
+            <label for="userinput" class="form-label">ID</label>
+            <input type="text" class="form-control" id="userinput" readonly name="userId" [(ngModel)]='userDetails.id'
+                placeholder="00">
+        </div>
+   
+        <div class="mb-3">
+            <label for="userinput" class="form-label">FirstName</label>
+            <input type="text" class="form-control" id="userinput" name="firstName" [(ngModel)]='userDetails.firstName'
+            (ngModelChange)="onChange($event)" placeholder="Max Muster">
+        </div>
+        <div class="mb-3">
+            <label for="userinput" class="form-label">LastName</label>
+            <input type="text" class="form-control" id="userinput" name="lname" [(ngModel)]='userDetails.lastName'
+            (ngModelChange)="onChange($event)"  placeholder="xxxx" >
+        </div>
+        <div class="mb-3">
+            <label for="userinput" class="form-label">Email</label>
+            <input type="email" class="form-control" id="userinput" name="email" [(ngModel)]='userDetails.email'
+            (ngModelChange)="onChange($event)"  placeholder="Max Muster@mail.com" >
+        </div>
+        <div class="mb-3">
+            <label for="userinput" class="form-label">Role</label>
+            <input type="text" class="form-control" id="userinput" name="Role" [(ngModel)]='userDetails.role'
+            (ngModelChange)="onChange($event)"  placeholder="######">
+        </div>
+        <div class="mb-3">
+            <label for="userinput" class="form-label">UserName</label>
+            <input type="text" class="form-control" id="userinput" name="uname"
+            (ngModelChange)="onChange($event)"  [(ngModel)]='userDetails.userName' placeholder="####">
+        </div>
+        <div class="mb-3">
+            <label for="userinput" class="form-label">Address</label>
+            <input type="text" class="form-control" id="userinput" name="address"
+            (ngModelChange)="onChange($event)"  [(ngModel)]='userDetails.address' placeholder="#######">
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!modelchanged">Save</button>
+        <button type="button" class="btn btn-danger ms-3" (click)="deleteUser(userDetails.id)" >Delete</button>
+        
+    </form>
+</div>
+
