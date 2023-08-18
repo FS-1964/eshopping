@@ -9,11 +9,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from 'src/components/footer/footer.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { AdminModule } from './admin/admin.module';
+import { LoginComponent } from './authentication/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
