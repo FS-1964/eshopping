@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +10,10 @@ import { FooterComponent } from 'src/components/footer/footer.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { AdminModule } from './admin/admin.module';
 import { LoginComponent } from './authentication/login/login.component';
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +22,7 @@ import { LoginComponent } from './authentication/login/login.component';
     LoginComponent
   ],
   imports: [
+  
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

@@ -9,12 +9,14 @@ import { UsersComponent } from './components/users/users.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
+
 @NgModule({
   declarations: [
     AdminComponent,
     AdduserComponent,
     EdituserComponent,
     UsersComponent
+   
   ],
   imports: [
     CommonModule,

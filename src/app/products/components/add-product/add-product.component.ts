@@ -17,7 +17,7 @@ export class AddProductComponent implements OnInit {
 
     price: '',
     image: '',
-
+  quantity:0,
     productId: ''
   };
   modelchanged: boolean = false;

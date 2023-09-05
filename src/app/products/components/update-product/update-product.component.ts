@@ -17,8 +17,10 @@ export class UpdateProductComponent implements OnInit {
     productId: '',
     title: '',
     description: '',
+    quantity:0,
     price: '',
     image: '',
+   
 
   };
   productid: string | null = "";

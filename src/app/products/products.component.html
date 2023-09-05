@@ -93,8 +93,8 @@
                                         </div>
     
                                         <div class="text-muted mb-3">34 reviews</div>
-    
-                                        <button type="button" class="btn bg-cart"><i class="fa fa-cart-plus mr-2"></i> Add to cart</button>
+                                       
+                                        <button type="button" class="btn bg-cart" (click)="addToCart(product)"><i class="fa fa-cart-plus mr-2" ></i> Add to cart</button>
                                         <button  type="button" class="btn bg-cart"
                                         [routerLink]="['/products','update-product',product.id]"><i
                                             class="fa fa-pencil-square-o"></i> Edit</button>

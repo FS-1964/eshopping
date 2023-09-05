@@ -1,12 +1,11 @@
-
-export interface product{
+export interface cartitem{
     productId:string,
     title:string,
     description:string,
     image:string,
     price:string,
-    quantity:number
+    quantity:number,
+    totalprice:number
 
   
 }
-

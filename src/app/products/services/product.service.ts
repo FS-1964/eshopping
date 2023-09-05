@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {  Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { product } from '../../models/product';
@@ -6,6 +6,7 @@ import { product } from '../../models/product';
   providedIn: 'root'
 })
 export class ProductService {
+ 
 
 
   constructor(private httpClient: HttpClient) { }
@@ -28,4 +29,5 @@ updateProduct(id: string, productDetails: product): Observable<product> {
 deleteProduct(id: string): Observable<product> {
   return this.httpClient.delete<product>( 'https://localhost:7203/api/Product/deleteproduct/' + id);
 }
+
 }
