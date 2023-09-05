@@ -9,17 +9,20 @@ export class CartService {
   public cartItemList: product[] = []
   public productList = new BehaviorSubject<any>([]);
   public search = new BehaviorSubject<string>("");
-  private _cartItemsCount= new BehaviorSubject<number>(0);
+  private _cartItemsCount = new BehaviorSubject<number>(0);
 
   constructor() { }
 
   getProducts() {
     return this.productList.asObservable();
-  } 
+  }
   getItemsCount() {
     return this._cartItemsCount.asObservable();
   }
-
+  resetItemsCount() {
+    let counterVal = this._cartItemsCount.value;
+    this._cartItemsCount.next(0);
+  }
   setProduct(product: any) {
     this.cartItemList.push(...product);
     this.productList.next(product);
