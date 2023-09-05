@@ -9,11 +9,15 @@ export class CartService {
   public cartItemList: product[] = []
   public productList = new BehaviorSubject<any>([]);
   public search = new BehaviorSubject<string>("");
+  private _cartItemsCount= new BehaviorSubject<number>(0);
 
   constructor() { }
 
   getProducts() {
     return this.productList.asObservable();
+  } 
+  getItemsCount() {
+    return this._cartItemsCount.asObservable();
   }
 
   setProduct(product: any) {
@@ -21,6 +25,8 @@ export class CartService {
     this.productList.next(product);
   }
   addtoCart(product: any) {
+    let counterVal = this._cartItemsCount.value;
+    this._cartItemsCount.next(counterVal + 1);
     this.cartItemList.map((a: any, index: any) => {
       if (product.id === a.id && a.quantity > 0) {
         a.quantity++;
@@ -46,6 +52,8 @@ export class CartService {
     return grandTotal;
   }
   removeCartItem(product: any) {
+    let counterVal = this._cartItemsCount.value;
+    this._cartItemsCount.next(counterVal - 1);
     console.log(this.cartItemList)
     this.cartItemList.map((a: any, index: any) => {
 

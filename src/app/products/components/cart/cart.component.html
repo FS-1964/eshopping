@@ -25,7 +25,11 @@
                             <td style="width: 12%;">{{item.quantity}}</td>
                             <td style="width: 12%;">{{item.total}}</td>
                             <td>
-                                <button (click)="removeItem(item)" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                <button (click)="removeItem(item)" class="btn btn-danger"><i class="fa fa-minus"></i></button>
+                                
+                            </td>
+                            <td>
+                                <button (click)="addItem(item)" class="btn btn-success"><i class="fa fa-plus"></i></button>
                             </td>
                         </tr>
                         <tr>

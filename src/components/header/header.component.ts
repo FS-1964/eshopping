@@ -10,12 +10,14 @@ import { CartService } from 'src/app/products/services/cart.service';
 })
 export class HeaderComponent implements OnInit {
   islogged: any;
-  public totalItem : number = 0;
+
+  public totalItemsCount : number = 0;
   constructor(private authservice: AuthService, private cartService : CartService) { }
   ngOnInit(): void {
-    this.cartService.getProducts()
-    .subscribe(res=>{
-      this.totalItem = res.length;
+   
+    this.cartService.getItemsCount().subscribe(res=>{
+      this.totalItemsCount=res;
+      console.log(this.totalItemsCount);
     })
     
   }
