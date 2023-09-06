@@ -11,15 +11,19 @@ import { CartService } from 'src/app/products/services/cart.service';
 export class HeaderComponent implements OnInit {
   islogged: any;
 
-  public totalItemsCount : number = 0;
-  constructor(private authservice: AuthService, private cartService : CartService) { }
+  loggeduser: string | undefined;
+  public totalItemsCount: number = 0;
+  constructor(private authservice: AuthService, private cartService: CartService) { }
+ 
   ngOnInit(): void {
-   
-    this.cartService.getItemsCount().subscribe(res=>{
-      this.totalItemsCount=res;
-      console.log(this.totalItemsCount);
+
+    this.cartService.getItemsCount().subscribe(res => {
+      this.totalItemsCount = res;
+
     })
-    
+       
+      this.loggeduser = this.authservice.getActualUser();
+
   }
   logoutactiv() {
     this.authservice.ProceedLogout();
@@ -28,6 +32,16 @@ export class HeaderComponent implements OnInit {
     let result = false;
     if (this.authservice.token) {
       result = true;
+    }
+    return result;
+  }
+  isAdmin() {
+    let result = false;
+    if (this.authservice.HaveAccess() === true) {
+      result = true;
+    }
+    else {
+      result = false;
     }
     return result;
   }

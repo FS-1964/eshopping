@@ -9,33 +9,70 @@ const helper = new JwtHelperService();
   providedIn: 'root'
 })
 export class AuthService {
+  private _loggedUser = new BehaviorSubject<string>("");
   private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
   private readonly TOKEN_NAME = 'garibaldi';
+
   isLoggedIn$ = this._isLoggedIn$.asObservable();
+
   User!: user | null;
   isLoggedin: any;
   isAuthenticated: any;
+
   apiurl = 'https://localhost:7203/api/Employees/Authenticate';
   constructor(private http: HttpClient, private _router: Router) {
     this._isLoggedIn$.next(!!this.token);
-    this.User = this.getUser(this.token);
+
+    // this.User = this.getUser(this.token) as user;
   }
+  getLoggedUser() {
+    return this._loggedUser.asObservable();
+  }
+
   login(UserCred: any) {
     return this.http.post(this.apiurl, UserCred).pipe(
       tap((response: any) => {
         this._isLoggedIn$.next(true);
         this.isLoggedin = true;
+        localStorage.setItem("loggeduser", this.getUserName(response.token));
+        //  console.log("auth:"+ response.token);
         localStorage.setItem(this.TOKEN_NAME, response.token);
-        this.User = this.getUser(response.token); console.log(this.User)
+
+
+        // this.User = <user>this.getUser(response.token);
+
+        this._loggedUser.next(this.getUserName(response.token));
+
 
       })
     );
   }
-  private getUser(token: string): user | null {
+   public getActualUser():string {
+    return localStorage.getItem("loggeduser")!;
+
+  }
+  /* private getUser(token: string): user | null {
+
     if (!token) {
       return null
     }
+
     return JSON.parse(atob(token.split('.')[1])) as user;
+
+
+  } */
+
+  public getUserName(token: string): string {
+
+    if (!token) {
+      return "";
+    }
+
+    let tmpuser = JSON.parse(atob(token.split('.')[1]));
+
+    return tmpuser.unique_name;
+
+
   }
 
   get token(): any {
@@ -58,6 +95,8 @@ export class AuthService {
       var _finaldata = JSON.parse(_atobdata);
 
       if (_finaldata == null) return false;
+
+
       if (_finaldata.role == 'Admin') {
         returnresult = true
       } else {

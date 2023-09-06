@@ -1,14 +1,17 @@
 <!-- Navigation-->
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+      
         <div class="brand">
             <a class="navbar-brand" href="#!">Digital Trading</a>
+           
             <button *ngIf="totalItemsCount >0" routerLink="cart" class="btn btn-primary">
                 <a class="btn"  style="font-size: 30px;" class="fas fa-cart-plus"></a>
 
                 <div id="total" style="font-size: 10px;" class="badge bg-primary">{{totalItemsCount}}  </div>
             </button>
         </div>
+        <div> <h6 *ngIf="isloggedin()">Welcome {{loggeduser}}</h6></div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span></button>
@@ -26,10 +29,10 @@
 
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                <li class="nav-item dropdown" >
+                    <a class="nav-link dropdown-toggle"  id="navbarDropdown" *ngIf="isAdmin()" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" >
 
                         <li><a class="dropdown-item" href="#">Orders</a></li>
                         <li><a class="dropdown-item" href="admin/adduser">ADD User</a></li>
