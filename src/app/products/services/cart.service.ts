@@ -27,20 +27,26 @@ export class CartService {
     this.cartItemList.push(...product);
     this.productList.next(product);
   }
+
+  checkItemListForproduct(id:any):boolean{
+    let found=false;
+    this.cartItemList.map((a: any, index: any) => {
+      if (id === a.id && a.quantity > 0) {
+        a.quantity++;
+        found=true;
+      }
+    })
+    return found;
+  }
   addtoCart(product: any) {
     let counterVal = this._cartItemsCount.value;
     this._cartItemsCount.next(counterVal + 1);
-    this.cartItemList.map((a: any, index: any) => {
-      if (product.id === a.id && a.quantity > 0) {
-        a.quantity++;
-
-      }
-    })
-
-    if (product.quantity === 0) {
+    let result=this.checkItemListForproduct(product.id);
+  
+     if (product.quantity === 0 && !result) {
       product.quantity += 1;
       this.cartItemList.push(product);
-    }
+    } 
 
     this.productList.next(this.cartItemList);
     this.getTotalPrice();

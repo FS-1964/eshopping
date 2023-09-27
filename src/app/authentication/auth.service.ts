@@ -12,17 +12,16 @@ export class AuthService {
   private _loggedUser = new BehaviorSubject<string>("");
   private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
   private readonly TOKEN_NAME = 'garibaldi';
-
-  isLoggedIn$ = this._isLoggedIn$.asObservable();
-
+  public isLoggedIn$ = this._isLoggedIn$.asObservable();
+  public LoggedInUser$ = this._loggedUser.asObservable();
   User!: user | null;
   isLoggedin: any;
   isAuthenticated: any;
 
-  apiurl = 'https://localhost:7203/api/Employees/Authenticate';
+  apiurl = 'https://localhost:7203/api/user/Authenticate';
   constructor(private http: HttpClient, private _router: Router) {
     this._isLoggedIn$.next(!!this.token);
-
+    this._loggedUser.next(this.token);
     // this.User = this.getUser(this.token) as user;
   }
   getLoggedUser() {
@@ -30,62 +29,52 @@ export class AuthService {
   }
 
   login(UserCred: any) {
+
     return this.http.post(this.apiurl, UserCred).pipe(
       tap((response: any) => {
         this._isLoggedIn$.next(true);
-        this.isLoggedin = true;
-        localStorage.setItem("loggeduser", this.getUserName(response.token));
-        //  console.log("auth:"+ response.token);
-        localStorage.setItem(this.TOKEN_NAME, response.token);
-
-
-        // this.User = <user>this.getUser(response.token);
-
         this._loggedUser.next(this.getUserName(response.token));
-
+        this.isLoggedin = true;
+        localStorage.setItem(this.TOKEN_NAME, response.token);
+       
+        localStorage.setItem("loggeduser", this.getUserName(response.token));
 
       })
     );
   }
-   public getActualUser():string {
+  public getActualUser(): string {
     return localStorage.getItem("loggeduser")!;
-
   }
-  /* private getUser(token: string): user | null {
 
-    if (!token) {
-      return null
-    }
-
-    return JSON.parse(atob(token.split('.')[1])) as user;
-
-
-  } */
 
   public getUserName(token: string): string {
 
     if (!token) {
       return "";
     }
-
     let tmpuser = JSON.parse(atob(token.split('.')[1]));
-
     return tmpuser.unique_name;
-
-
   }
 
   get token(): any {
     return localStorage.getItem(this.TOKEN_NAME);
   }
+  get token_userName(): any {
+   // alert(this.getUserName(localStorage.getItem(this.TOKEN_NAME)!));
+ 
+    return this.getUserName(localStorage.getItem(this.TOKEN_NAME)!);
+  }
   ProceedLogin(UserCred: any) {
     return this.http.post<any>(this.apiurl, UserCred);
   }
   ProceedLogout() {
+
     localStorage.removeItem(this.TOKEN_NAME);
+    localStorage.removeItem("loggeduser");
     this._router.navigate(['home']);
+
   }
-  HaveAccess() {
+  public HaveAccess() {
     var loggintoken = localStorage.getItem(this.TOKEN_NAME) || '';
     var returnresult = false;
     var _extractedtoken = loggintoken.split('.')[1];

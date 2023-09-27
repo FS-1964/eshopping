@@ -3,6 +3,7 @@ import { product } from '../models/product';
 import { ProductService } from './services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from './services/cart.service';
+import { AuthService } from '../authentication/auth.service';
 
 
 
@@ -13,10 +14,10 @@ import { CartService } from './services/cart.service';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-
+  islogged: boolean=false;
  
 
-  constructor(private activeRoute: ActivatedRoute, private productService: ProductService, private cartService : CartService) { }
+  constructor(private activeRoute: ActivatedRoute, private productService: ProductService, private cartService : CartService, private authService :AuthService) { }
   products!: any[];
   ngOnInit(): void {
 
@@ -27,6 +28,10 @@ export class ProductsComponent implements OnInit {
       });
 
     });
+
+    this.authService.isLoggedIn$.subscribe(res => {
+         this.islogged=res;
+    });
   }
 
   addToCart(item: any) {
@@ -35,6 +40,10 @@ export class ProductsComponent implements OnInit {
 
   }
 
-   
+  isAdmin(){
+   return this.authService.HaveAccess();
+  }
+
+  
  
 }
